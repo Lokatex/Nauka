@@ -22,7 +22,7 @@ function App() {
         <Row className="my-4">
           <Col md={8}>
           <InputGroup>
-              <Form.Control type="text" placeholder="Wyszukaj osobę" className='border border-2 border-success'/>
+              <Form.Control type="text" placeholder="Imię/ Nazwisko/ email/ telefon" className='border border-2 border-success'/>
               <Button variant="outline-secondary" className='border border-success border-2'>Szukaj</Button>
             </InputGroup>
 

@@ -29,8 +29,8 @@
 }
 
 .color-bars {
-  margin-top: 5px;
-  width: 50%;
+  margin-top: 0; /* Usunięcie górnego marginesu, aby kolorowe paski były wyrównane */
+  width: 80%; /* Zmniejszenie szerokości, aby paski były bliżej centrum */
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -61,7 +61,7 @@ th {
 }
 
 .custom-table th > div {
-  margin-top: 8px;
+  margin-top: 0; /* Wyrównanie z innymi elementami */
 }
 
 /* Stylizacja dla statusów */
@@ -85,5 +85,31 @@ th {
 .status.busy {
   background-color: red; /* Czerwony dla zajętej osoby */
 }
+.action-buttons {
+  display: flex;
+  justify-content: center; /* Wyśrodkowanie przycisków */
+  align-items: center;
+  gap: 5px; /* Odstęp między przyciskami */
+}
 
-  
+.action-button {
+  background-color: #cccccc; /* Szare tło */
+  border: none;
+  border-radius: 50%;
+  width: 40px; /* Ustalona szerokość i wysokość dla przycisku */
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #aaaaaa; /* Ciemniejsze szare tło po najechaniu */
+}
+
+.action-button img {
+  width: 20px; /* Rozmiar ikony wewnątrz przycisku */
+  height: 20px;
+}
