@@ -1,17 +1,25 @@
-import Table from 'react-bootstrap/Table';
-import './Tabela.css'
-
+import React, { useEffect, useState } from 'react';
+import './Tabela.css';
 
 function StripedRowExample() {
+  const [statuses, setStatuses] = useState([]);
+
+  useEffect(() => {
+    // Pobieranie danych z endpointa serwerowego
+    fetch('https://dev.careglo.eu/api/caregivers')
+      .then(response => response.json())
+      .then(data => setStatuses(data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
   return (
-    
-    <Table className="border rounded-top" striped  hover>
+    <table className="custom-table">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Imię </th>
+          <th>ID</th>
+          <th>Imię</th>
           <th>Nazwisko</th>
-          <th>Action</th>
+          <th>Status</th>
           <th>Numer Telefonu</th>
           <th>Email</th>
           <th>Poziom Języka</th>
@@ -19,40 +27,29 @@ function StripedRowExample() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>xyz</td>
-          <td>000-000-000</td>
-          <td>@mdo</td>
-          <td>poziom</td>
-          <td>ikony</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>xyz</td>
-          <td>000-000-000</td>
-          <td>@mdo</td>
-          <td>poziom</td>
-          <td>ikony</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>xyz</td>
-          <td>000-000-000</td>
-          <td>@mdo</td>
-          <td>poziom</td>
-          <td>ikony</td>
-        </tr>
+        {statuses.map(person => (
+          <tr key={person.id}>
+            <td>{person.id}</td>
+            <td>{person.firstName}</td>
+            <td>{person.lastName}</td>
+            <td className={`status ${person.status}`}>
+              {person.status === 'free' && 'Wolna'}
+              {person.status === 'in duty' && 'W trakcie dyżuru'}
+              {person.status === 'busy' && 'Zajęta'}
+            </td>
+            <td>{person.phone}</td>
+            <td>{person.email}</td>
+            <td>{person.languageLevel}</td>
+            <td>ikony</td>
+          </tr>
+        ))}
       </tbody>
-    </Table>
-    
+    </table>
   );
 }
 
 export default StripedRowExample;
+
+
+
+
